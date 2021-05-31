@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import FormikChakraUi from "../screens/FormikChakraUi";
 import ReactHookFormAntDesign from "../screens/ReactHookFormAntDesign";
 
-const FormDisplay = () => {
+const FormDisplay = ({ copyCode }) => {
   const { formLibrary, designLibrary } = useSelector(
     (state) => state.formCreation
   );
@@ -17,8 +17,7 @@ const FormDisplay = () => {
     ReactHookFormAntDesign: ReactHookFormAntDesign,
   };
   const FormDisplayComponent = formComponents[formTag];
-
-  return <FormDisplayComponent />;
+  return <FormDisplayComponent copyCode={copyCode} />;
 };
 
 export default FormDisplay;
