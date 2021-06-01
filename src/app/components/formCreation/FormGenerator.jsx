@@ -16,6 +16,7 @@ import { FormLabel } from "@material-ui/core";
 import cogoToast from "cogo-toast";
 
 const InputVariants = [
+  "Form Group heading",
   "Text Input Field",
   "Email Input Field",
   "Password Input Field",
@@ -48,6 +49,7 @@ const FormGenerator = () => {
       cogoToast.error("Please, fill out Heading title at least!");
     }
   };
+
   const prepareFieldParamsAndDispatch = (index) => {
     switch (index) {
       case 0:
