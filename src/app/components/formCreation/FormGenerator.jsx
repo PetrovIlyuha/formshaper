@@ -16,7 +16,6 @@ import { FormLabel } from "@material-ui/core";
 import cogoToast from "cogo-toast";
 
 const InputVariants = [
-  "Form Group heading",
   "Text Input Field",
   "Email Input Field",
   "Password Input Field",
@@ -24,6 +23,7 @@ const InputVariants = [
   "TextArea",
   "DateTime Picker",
   "Numerical Input",
+  "Form Group heading",
 ];
 
 const FormGenerator = () => {
