@@ -5,7 +5,8 @@ const initialState = {
   formLibrary: localStorage.getItem("form") || null,
   designLibrary: localStorage.getItem("design") || null,
   formFields: [],
-  codeAsText: "",
+  codeAsText: [],
+  cleanedCodeAsText: "",
 };
 
 export const formCreationSlice = createSlice({
@@ -24,10 +25,19 @@ export const formCreationSlice = createSlice({
       state.formFields.push({ id: uuidv4(), ...payload });
     },
     clearCodeAsTextValue: (state, { payload }) => {
-      state.codeAsText = "";
+      state.codeAsText = [];
+      state.cleanedCodeAsText = "";
     },
     addNextElementToTextResult: (state, { payload }) => {
-      state.codeAsText += payload;
+      state.codeAsText.push(payload);
+      state.cleanedCodeAsText = state.codeAsText
+        .map((elem) => elem.content)
+        .join("");
+    },
+    removeFormElement: (state, { payload }) => {
+      state.codeAsText = state.codeAsText.filter((elem) => elem.id !== payload);
+      state.formFields = state.formFields.filter((elem) => elem.id !== payload);
+      state.cleanedCodeAsText = state.codeAsText.map((elem) => elem.content);
     },
   },
   extraReducers: {},
@@ -39,6 +49,7 @@ export const {
   addNextFieldParams,
   addNextElementToTextResult,
   clearCodeAsTextValue,
+  removeFormElement,
 } = formCreationSlice.actions;
 
 export const formLibrarySelector = (state) => state.formLibrary;
